@@ -221,5 +221,5 @@ Custom schedules for:
 
 ---
 
-Made AyurLife — Your personalized path to Ayurvedic wellness 🍃
+Made with ❤️ for AyurLife — Your personalized path to Ayurvedic wellness 🍃
 
