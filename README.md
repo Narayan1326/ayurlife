@@ -121,42 +121,42 @@ ayurlife/
   
 ---
 
-# 🧭 User Flow
+## 🧭 User Flow
 
-## 🪔 1. Registration
+### 🪔 1. Registration
 
 - Enter full name, email, and password
 - Account is created and stored
 - Redirects to login page
 
-## 🔑 2. Login
+### 🔑 2. Login
 
 - User logs in with email and password
 - Redirects to personalized dashboard
 
-## 🏠 3. Dashboard
+### 🏠 3. Dashboard
 
 - Welcome message and quick stats
 - Prakriti status, profile completion, and wellness score
 
-## 🧘‍♂️ 4. Prakriti Assessment
+### 🧘‍♂️ 4. Prakriti Assessment
 
 - 8-question quiz with Vata, Pitta, Kapha options
 - Generates a constitution profile with traits
 
-## 🥗 5. Personalized Recommendations
+### 🥗 5. Personalized Recommendations
 
 - Diet plans, daily routines, and yoga guidance
 - Based on the user’s unique Prakriti
 
-## 📈 6. Progress Tracking
+### 📈 6. Progress Tracking
 
 - Weekly progress summaries
 - Wellness score updates and suggestions
 
 ---
 
-# 🎨 Color Theme
+## 🎨 Color Theme
 
 ### Inspired by Ayurveda’s calming tones:
 
@@ -166,9 +166,9 @@ ayurlife/
 
 ---
 
-# 🔍 Features in Detail
+## 🔍 Features in Detail
 
-## 🧘‍♂️ Prakriti Analysis
+### 🧘‍♂️ Prakriti Analysis
 
 Assesses 8 key aspects:
 
@@ -183,13 +183,13 @@ Assesses 8 key aspects:
 
 Determines whether the user is predominantly Vata, Pitta, or Kapha.
 
-## 🥗 Personalized Diet Plans
+### 🥗 Personalized Diet Plans
 
 - Recommended foods for balance
 - Foods to avoid
 - Sample daily meals and timing
 
-## 🕒 Daily Routine
+### 🕒 Daily Routine
 
 Custom schedules for:
 
@@ -197,7 +197,7 @@ Custom schedules for:
 - Afternoon: Work, rest, lunch
 - Evening: Meditation, dinner, sleep time
 
-## 🔮 Future Enhancements
+### 🔮 Future Enhancements
 
  - Backend integration with database
  - JWT authentication
@@ -213,7 +213,7 @@ Custom schedules for:
 ---
 
 
-# 🙏 Acknowledgments
+## 🙏 Acknowledgments
 
 - Ayurveda principles and ancient wellness practices
 - Modern web development best practices
