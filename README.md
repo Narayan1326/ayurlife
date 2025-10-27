@@ -219,4 +219,7 @@ Custom schedules for:
 - Modern web development best practices
 - Valuable feedback from the community
 
+---
+
+Made AyurLife — Your personalized path to Ayurvedic wellness 🍃
 
