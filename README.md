@@ -59,3 +59,164 @@ A comprehensive web application for **personalized Ayurveda wellness management*
 
 ## 🏗️ Project Structure
 
+```bash
+ayurlife/
+├── app/
+│ ├── layout.tsx # Root layout with providers
+│ ├── globals.css # Global styles
+│ ├── page.tsx # Home/redirect page
+│ ├── register/ # Registration page
+│ ├── login/ # Login page
+│ └── dashboard/ # Dashboard and features
+│ ├── layout.tsx # Dashboard layout
+│ ├── page.tsx # Dashboard home
+│ ├── profile/ # User profile
+│ ├── prakriti-analysis/ # Prakriti assessment
+│ ├── diet-plan/ # Diet recommendations
+│ ├── daily-routine/ # Daily schedule
+│ ├── progress/ # Progress tracking
+│ ├── yoga-wellness/ # Yoga & meditation
+│ ├── reports/ # Reports & analytics
+│ └── settings/ # User settings
+├── components/
+│ ├── sidebar.tsx # Navigation sidebar
+│ ├── navbar.tsx # Top navigation bar
+│ └── ui/ # UI components
+├── context/
+│ ├── auth-context.tsx # Authentication context
+│ └── theme-context.tsx # Theme management
+└── README.md # This file
+```
+
+
+---
+
+## ⚙️ Getting Started
+
+### 📋 Prerequisites
+- Node.js **v18+**
+- npm or yarn
+
+### 🛠️ Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd ayurlife
+   ```
+   
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Access the application**
+
+- Visit http://localhost:3000
+  
+---
+
+# 🧭 User Flow
+
+## 🪔 1. Registration
+
+- Enter full name, email, and password
+- Account is created and stored
+- Redirects to login page
+
+## 🔑 2. Login
+
+- User logs in with email and password
+- Redirects to personalized dashboard
+
+## 🏠 3. Dashboard
+
+- Welcome message and quick stats
+- Prakriti status, profile completion, and wellness score
+
+## 🧘‍♂️ 4. Prakriti Assessment
+
+- 8-question quiz with Vata, Pitta, Kapha options
+- Generates a constitution profile with traits
+
+## 🥗 5. Personalized Recommendations
+
+- Diet plans, daily routines, and yoga guidance
+- Based on the user’s unique Prakriti
+
+## 📈 6. Progress Tracking
+
+- Weekly progress summaries
+- Wellness score updates and suggestions
+
+---
+
+# 🎨 Color Theme
+
+### Inspired by Ayurveda’s calming tones:
+
+- **Primary** : Teal #16A085
+- **Background** : Light mint/cream
+- **Dark Mode** : Dark slate with teal accents
+
+---
+
+# 🔍 Features in Detail
+
+## 🧘‍♂️ Prakriti Analysis
+
+Assesses 8 key aspects:
+
+1. Body frame
+2. Skin type
+3. Appetite
+4. Digestion
+5. Sleep pattern
+6. Memory
+7. Speech
+8. Emotional nature
+
+Determines whether the user is predominantly Vata, Pitta, or Kapha.
+
+## 🥗 Personalized Diet Plans
+
+- Recommended foods for balance
+- Foods to avoid
+- Sample daily meals and timing
+
+## 🕒 Daily Routine
+
+Custom schedules for:
+
+- Morning: Yoga, oil massage, breakfast
+- Afternoon: Work, rest, lunch
+- Evening: Meditation, dinner, sleep time
+
+## 🔮 Future Enhancements
+
+ - Backend integration with database
+ - JWT authentication
+ - Admin management panel
+ - Email reminders and notifications
+ - Yoga video tutorials
+ - Wearable device integration
+ - AI-powered wellness suggestions
+ - Community & discussion forums
+ - Appointment scheduling
+ - Mobile app (React Native)
+
+---
+
+
+# 🙏 Acknowledgments
+
+- Ayurveda principles and ancient wellness practices
+- Modern web development best practices
+- Valuable feedback from the community
+
+
