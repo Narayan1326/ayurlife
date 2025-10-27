@@ -160,7 +160,7 @@ ayurlife/
 
 ### Inspired by Ayurveda’s calming tones:
 
-- **Primary** : Teal #16A085
+- **Primary** : Teal ```#16A085```
 - **Background** : Light mint/cream
 - **Dark Mode** : Dark slate with teal accents
 
