@@ -5,7 +5,11 @@ import { useTheme } from "@/context/theme-context"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
-export default function Navbar() {
+interface NavbarProps {
+  onMenuClick?: () => void
+}
+
+export default function Navbar({ onMenuClick }: NavbarProps) {
   const { user, logout } = useAuth()
   const { theme, toggleTheme } = useTheme()
   const router = useRouter()
@@ -16,15 +20,21 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-card border-b border-border px-8 py-4 flex items-center justify-between">
-      <div className="flex-1">
-        <h2 className="text-lg font-semibold text-foreground">Welcome to AyurLife</h2>
+    <nav className="bg-card border-b border-border px-4 md:px-8 py-3 md:py-4 flex items-center justify-between gap-4">
+      <button onClick={onMenuClick} className="md:hidden p-2 rounded-lg hover:bg-accent transition" title="Toggle menu">
+        <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <div className="flex-1 min-w-0">
+        <h2 className="text-base md:text-lg font-semibold text-foreground truncate">Welcome to AyurLife</h2>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-lg hover:bg-teal-100 transition"
+          className="p-2 rounded-lg hover:bg-teal-100 dark:hover:bg-teal-900 transition"
           title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
         >
           {theme === "light" ? (
@@ -42,7 +52,11 @@ export default function Navbar() {
           )}
         </button>
 
-        <Link href="/dashboard/profile" className="p-2 rounded-lg hover:bg-teal-100 transition" title="View profile">
+        <Link
+          href="/dashboard/profile"
+          className="p-2 rounded-lg hover:bg-teal-100 dark:hover:bg-teal-900 transition"
+          title="View profile"
+        >
           <svg className="w-5 h-5 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
           </svg>
@@ -50,7 +64,7 @@ export default function Navbar() {
 
         <button
           onClick={handleLogout}
-          className="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 transition"
+          className="px-3 md:px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 transition text-sm md:text-base whitespace-nowrap"
         >
           Logout
         </button>

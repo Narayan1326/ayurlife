@@ -1,22 +1,42 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { useRoutine } from "@/context/routine-context"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useState } from "react"
 
 export default function ReportsPage() {
   const router = useRouter()
+  const { getWellnessScore, getTodayCompletions, getTodayTotal, getRoutineCompletionPercentage } = useRoutine()
   const [downloading, setDownloading] = useState<string | null>(null)
 
+  const wellnessScore = getWellnessScore()
+  const todayCompletions = getTodayCompletions()
+  const todayTotal = getTodayTotal()
+  const today = new Date().toISOString().split("T")[0]
+  const todayAdherence = getRoutineCompletionPercentage(today)
+
+  // Calculate monthly metrics
+  let daysActive = 0
+  let totalAdherence = 0
+  for (let i = 0; i < 30; i++) {
+    const date = new Date()
+    date.setDate(date.getDate() - i)
+    const dateStr = date.toISOString().split("T")[0]
+    const adherence = getRoutineCompletionPercentage(dateStr)
+    if (adherence > 0) daysActive++
+    totalAdherence += adherence
+  }
+  const monthlyAdherence = daysActive > 0 ? Math.round(totalAdherence / 30) : 0
+
   const reportData = {
-    daysActive: 28,
-    adherence: 85,
-    yogaMinutes: 120,
-    wellnessScore: 92,
+    daysActive,
+    adherence: monthlyAdherence,
+    wellnessScore,
     recommendations: [
-      "Increase meditation to 20 minutes daily",
-      "Add more leafy greens to your diet",
-      "Maintain consistent sleep schedule",
+      wellnessScore < 50 ? "Increase daily routine completion" : "Maintain your current consistency",
+      todayTotal === 0 ? "Start tracking your daily routines" : "Keep following your personalized schedule",
+      "Practice meditation for better wellness",
     ],
     generatedDate: new Date().toLocaleDateString(),
   }
@@ -31,8 +51,8 @@ MONTHLY SUMMARY
 ===============
 Days Active: ${reportData.daysActive}
 Adherence: ${reportData.adherence}%
-Yoga Minutes: ${reportData.yogaMinutes}
 Wellness Score: ${reportData.wellnessScore}%
+Today's Completions: ${todayCompletions}/${todayTotal}
 
 RECOMMENDATIONS
 ===============
@@ -53,8 +73,8 @@ ${reportData.recommendations.map((rec, i) => `${i + 1}. ${rec}`).join("\n")}
     const csvContent = `Metric,Value
 Days Active,${reportData.daysActive}
 Adherence,${reportData.adherence}%
-Yoga Minutes,${reportData.yogaMinutes}
 Wellness Score,${reportData.wellnessScore}%
+Today Completions,${todayCompletions}/${todayTotal}
 Generated Date,${reportData.generatedDate}`
 
     const element = document.createElement("a")
@@ -76,8 +96,8 @@ Generated Date,${reportData.generatedDate}`
         metrics: {
           daysActive: reportData.daysActive,
           adherence: `${reportData.adherence}%`,
-          yogaMinutes: reportData.yogaMinutes,
           wellnessScore: `${reportData.wellnessScore}%`,
+          todayCompletions: `${todayCompletions}/${todayTotal}`,
         },
         recommendations: reportData.recommendations,
       },
@@ -101,8 +121,8 @@ Generated Date,${reportData.generatedDate}`
       <tr><th>Metric</th><th>Value</th></tr>
       <tr><td>Days Active</td><td>${reportData.daysActive}</td></tr>
       <tr><td>Adherence</td><td>${reportData.adherence}%</td></tr>
-      <tr><td>Yoga Minutes</td><td>${reportData.yogaMinutes}</td></tr>
       <tr><td>Wellness Score</td><td>${reportData.wellnessScore}%</td></tr>
+      <tr><td>Today Completions</td><td>${todayCompletions}/${todayTotal}</td></tr>
       <tr><td>Generated Date</td><td>${reportData.generatedDate}</td></tr>
     </table>
     `
@@ -117,7 +137,7 @@ Generated Date,${reportData.generatedDate}`
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-6 lg:p-8">
       <div className="mb-6">
         <button
           onClick={() => router.back()}
@@ -149,12 +169,14 @@ Generated Date,${reportData.generatedDate}`
                 <p className="text-sm text-muted-foreground">Adherence</p>
               </div>
               <div className="text-center p-4 bg-teal-50 rounded-lg border border-teal-100">
-                <p className="text-2xl font-bold text-teal-600">{reportData.yogaMinutes}</p>
-                <p className="text-sm text-muted-foreground">Yoga Minutes</p>
-              </div>
-              <div className="text-center p-4 bg-teal-50 rounded-lg border border-teal-100">
                 <p className="text-2xl font-bold text-teal-600">{reportData.wellnessScore}%</p>
                 <p className="text-sm text-muted-foreground">Wellness Score</p>
+              </div>
+              <div className="text-center p-4 bg-teal-50 rounded-lg border border-teal-100">
+                <p className="text-2xl font-bold text-teal-600">
+                  {todayTotal === 0 ? "0" : Math.round((todayCompletions / todayTotal) * 100)}%
+                </p>
+                <p className="text-sm text-muted-foreground">Today</p>
               </div>
             </div>
 

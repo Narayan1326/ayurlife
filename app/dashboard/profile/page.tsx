@@ -14,10 +14,12 @@ export default function ProfilePage() {
     name: user?.name || "",
     age: user?.age || "",
     gender: user?.gender || "",
+    phone: user?.phone || "",
+    address: user?.address || "",
   })
   const [isSaving, setIsSaving] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
@@ -35,7 +37,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-8">
       <div className="mb-6">
         <button
           onClick={() => router.back()}
@@ -50,9 +52,38 @@ export default function ProfilePage() {
         <p className="text-muted-foreground">Manage your personal information</p>
       </div>
 
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground mb-2">Account Role</p>
+              <p className="text-2xl font-bold text-teal-600 capitalize">{user?.role || "user"}</p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground mb-2">Member Since</p>
+              <p className="text-lg font-semibold text-foreground">
+                {user?.joinDate ? new Date(user.joinDate).toLocaleDateString() : "N/A"}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground mb-2">Account Status</p>
+              <p className="text-lg font-semibold text-green-600">Active</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       <Card>
         <CardHeader>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-col md:flex-row gap-4">
             <div>
               <CardTitle>Personal Information</CardTitle>
               <CardDescription>Update your health and personal details</CardDescription>
@@ -118,6 +149,38 @@ export default function ProfilePage() {
                 </select>
               ) : (
                 <p className="text-foreground capitalize">{user?.gender || "Not provided"}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Phone Number</label>
+              {isEditing ? (
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+1 (555) 000-0000"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                />
+              ) : (
+                <p className="text-foreground">{user?.phone || "Not provided"}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Address</label>
+              {isEditing ? (
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  placeholder="Enter your address"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                />
+              ) : (
+                <p className="text-foreground">{user?.address || "Not provided"}</p>
               )}
             </div>
           </div>
